@@ -1,6 +1,4 @@
 import { enableProdMode } from '@angular/core';
-import { CdkTableModule} from '@angular/cdk/table';
-
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppModule } from './app/app.module';
