@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
-
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -10,32 +11,35 @@ import { FormControl, Validators } from '@angular/forms';
 export class SignupComponent implements OnInit {
 
   hide = true;
+  signupForm: FormGroup;
 
-  email = new FormControl('', [Validators.required, Validators.email]);
-  name = new FormControl('', [Validators.required, Validators.maxLength(5)]);
-  password = new FormControl('', [Validators.required, Validators.maxLength(8)]);
-
-  constructor() { }
+  constructor(private formBuilder: FormBuilder,
+              private router: Router,
+              private userService: UserService) { }
 
   ngOnInit() {
-  }
-
-  getEmailErrorMessage() {
-    return this.email.hasError('required') ? 'You must enter a value' :
-        this.email.hasError('email') ? 'Not a valid email' :
-            '';
-  }
-
-  getNameErrorMessage() {
-    return this.name.hasError('required') ? 'Input a valid name' :
-          this.name.hasError('name') ? 'Name must be 5 characters or more.' : '';
-  }
-
-  getPasswordErrorMessage() {
-    return this.password.hasError('required') ? 'Input a valid password' :
-            this.password.hasError('password') ? 'Password must be 8 characters or more' : '';
-
+      this.signupForm = this.formBuilder.group({
+        name: ['', [Validators.required, Validators.minLength(5)]],
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required, Validators.minLength(8)]],
+      });
   }
 
 
+  createUser() {
+    console.log('here');
+    const {email, name, password} = this.signupForm.value;
+      if (!name) {
+        return 'username cannot be empty';
+      }
+      const userPayload = {
+        userName: name,
+        email: email,
+        password: password,
+      };
+    this.userService.createUser(userPayload)
+    .subscribe((response) => {
+      this.router.navigate(['/signin']);
+    });
+  }
 }

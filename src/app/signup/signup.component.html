@@ -1,24 +1,32 @@
 <div class="solution container">
-    <form>
+    <form [formGroup]="signupForm" (ngSubmit)="createUser()">
       <h1>Sign Up</h1>
+      <div class="form-group">
       <mat-form-field>
-          <input matInput placeholder="name" [formControl]="name" required>
-          <mat-error *ngIf="name.invalid">{{getNameErrorMessage()}}</mat-error>
+          <input matInput placeholder="name" class="form-control" formControlName="name" required>
+          <!-- <mat-error *ngIf="name.invalid">{{getNameErrorMessage()}}</mat-error> -->
           <i class="material-icons" style="font-size: 20px" matSuffix>face</i>
       </mat-form-field>
-  
+    </div>
+      
+    <div class="form-group">
       <mat-form-field>
-              <input matInput placeholder="Enter your email" [formControl]="email" required>
-          <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
+              <input matInput placeholder="Enter your email" class="form-control" formControlName="email" required>
+          <!-- <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error> -->
           <i class="material-icons" style="font-size: 20px" matSuffix>email</i>
       </mat-form-field>
-  
+    </div>
+      
+      <div class="form-group">
       <mat-form-field>
-          <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [formControl]="password" required>
-          <mat-error *ngIf="password.invalid">{{getPasswordErrorMessage()}}</mat-error>
+          <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" class="form-control" formControlName="password" required>
+          <!-- <mat-error *ngIf="password.invalid">{{getPasswordErrorMessage()}}</mat-error> -->
           <i class="material-icons" style="font-size: 20px" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</i>
       </mat-form-field>
+    </div>
+    <div class="form-group">
+    <button type="button" class="signup-button" (click)="createUser()">Sign up</button>
+    </div>
     </form>
-    <button class="signup-button">Sign up</button>
   </div>
   

@@ -3,13 +3,15 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
-
+import { HttpModule } from '@angular/http';
 import { MaterialModules } from './material.module';
+
 import { AppComponent } from './app.component';
 import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
+import { CompaniesComponent } from './companies/companies.component';
 import { AppRoutingModule } from './/app-routing.module';
+import { UserService } from './services/user.service';
 
 
 @NgModule({
@@ -17,6 +19,7 @@ import { AppRoutingModule } from './/app-routing.module';
     AppComponent,
     SignupComponent,
     SigninComponent,
+    CompaniesComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,9 +28,12 @@ import { AppRoutingModule } from './/app-routing.module';
     CommonModule,
     BrowserAnimationsModule,
     MaterialModules,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpModule,
   ],
-  providers: [],
+  providers: [
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
