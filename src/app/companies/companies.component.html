@@ -1,3 +1,4 @@
+<button mat-button class="add-company" (click)="createCompany()">Add Company</button>
 <div class="company-header">
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
@@ -12,9 +13,9 @@
         <mat-cell *matCellDef="let company"> {{company.name}}</mat-cell>
       </ng-container>
   
-      <ng-container matColumnDef="address">
+      <ng-container matColumnDef="siteAddress">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Company Address </mat-header-cell>
-        <mat-cell *matCellDef="let company"> {{company.address}} </mat-cell>
+        <mat-cell *matCellDef="let company"> {{company.siteAddress}} </mat-cell>
       </ng-container>
   
       <ng-container matColumnDef="phoneNo">
@@ -26,6 +27,22 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> Contact </mat-header-cell>
         <mat-cell *matCellDef="let company"> {{company.contactPerson}} </mat-cell>
       </ng-container>
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+        <mat-cell *matCellDef="let company"> {{company.email}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="regDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Reg. Date </mat-header-cell>
+        <mat-cell *matCellDef="let company"> {{company.regDate}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell *matCellDef="let row">
+              <button mat-button>Edit</button>
+              <button mat-button>Delete</button>
+          </mat-cell>
+        </ng-container>
   
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

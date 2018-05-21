@@ -12,6 +12,9 @@ import { SigninComponent } from './signin/signin.component';
 import { CompaniesComponent } from './companies/companies.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { UserService } from './services/user.service';
+import { CompanyService } from './services/company.service';
+import { AuthenticationService } from './services/authenticate.service';
+import { AddCompanyComponent } from './add-company/add-company.component';
 
 
 @NgModule({
@@ -20,6 +23,7 @@ import { UserService } from './services/user.service';
     SignupComponent,
     SigninComponent,
     CompaniesComponent,
+    AddCompanyComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,8 +36,11 @@ import { UserService } from './services/user.service';
     HttpModule,
   ],
   providers: [
-    UserService
+    UserService,
+    CompanyService,
+    AuthenticationService
   ],
+  entryComponents: [CompaniesComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
