@@ -1,0 +1,15 @@
+.add-company {
+    background: white;
+    width: 400px;
+    height: 550px;
+    border: 1px solid #c3c3c3;
+    align-content: center;
+    margin-top: 200px;
+    margin-left: 400px;
+    border-radius: 1%;
+}
+
+.container {
+    padding: 16px;
+    text-align: center;
+}

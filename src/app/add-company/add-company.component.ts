@@ -18,13 +18,13 @@ export class AddCompanyComponent implements OnInit {
 
   ngOnInit() {
     this.createCompanyForm = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.maxLength(5)]],
-      address: ['', [Validators.required, Validators.maxLength(8)]],
-      email: ['', [Validators.required, Validators.maxLength(8)]],
-      regDate: ['', [Validators.required, Validators.maxLength(8)]],
-      phoneNo: ['', [Validators.required, Validators.maxLength(8)]],
-      siteAddress: ['', [Validators.required, Validators.maxLength(8)]],
-      contactPerson: ['', [Validators.required, Validators.maxLength(8)]],
+      name: ['', [Validators.required, Validators.minLength(12)]],
+      address: ['', [Validators.required, Validators.minLength(12)]],
+      email: ['', [Validators.required, Validators.minLength(12)]],
+      regDate: ['', [Validators.required, Validators.minLength(8)]],
+      phoneNo: ['', [Validators.required, Validators.minLength(11)]],
+      siteAddress: ['', [Validators.required, Validators.minLength(12)]],
+      contactPerson: ['', [Validators.required, Validators.minLength(12)]],
     });
   }
 

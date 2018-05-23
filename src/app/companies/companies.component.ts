@@ -1,8 +1,10 @@
 import { Component, AfterViewInit, ViewChild, OnInit, TemplateRef, ElementRef } from '@angular/core';
 import {MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
 import { DataSource } from '@angular/cdk/table';
+import { Company } from '../interfaces/company.interface';
 import { CompanyService } from '../services/company.service';
 
 
@@ -13,7 +15,7 @@ import { CompanyService } from '../services/company.service';
 })
 export class CompaniesComponent implements AfterViewInit, OnInit {
   displayedColumns = ['name', 'siteAddress', 'email', 'phoneNo', 'contactPerson', 'regDate', 'actions'];
-  dataSource = new MatTableDataSource<Company>(CompanyList);
+  dataSource = new CompanyDataSource(this.companyService);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -26,41 +28,38 @@ export class CompaniesComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    // this.dataSource.paginator = this.paginator;
+    // this.dataSource.sort = this.sort;
   }
 
   createCompany() {
     this.router.navigate(['/add-company']);
   }
 
-  getCompanies() {
-    this.companyService.getCompanies()
-    .subscribe((response) => {
-      console.log(response, 'response');
+  getCompanies(): any {
+    this.getCompanies()
+    .toPromise()
+    .then((response) => {
+      // return response;
+      console.log('here', response);
     });
   }
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim();
     filterValue = filterValue.toLowerCase();
-    this.dataSource.filter = filterValue;
+    // this.dataSource.filter = filterValue;
   }
 
 }
 
-export interface Company {
-  name: string;
-  siteAddress: string;
-  email: string;
-  regDate: string;
-  phoneNo: string;
-  contactPerson: string;
+export class CompanyDataSource extends DataSource<any> {
+  constructor(private companyService: CompanyService) {
+    super();
+  }
+  connect(): Observable<Company[]> {
+    return this.companyService.getCompanies();
+  }
+  disconnect() {}
 }
 
-const CompanyList: Company[]  = [
-{ name: 'someone',
-email: 'this@tht.com',  regDate: '08/1/2015', phoneNo: '08034434532', contactPerson: 'Hamd', siteAddress: '235, ilupeju rd, lagos'},
-{ name: 'hername',
-email: 'this@tht.com', regDate: '08/1/2015', phoneNo: '400269999', contactPerson: 'Hamd', siteAddress: '235, ilupeju rd, lagos'},
-];
