@@ -1,20 +1,39 @@
-<div class="solution container">
-  <form [formGroup]="signInForm" (ngSubmit)="loginUser()">
-    <h1>Sign In</h1>
-    <div class="form-group">
-    <mat-form-field>
-            <input matInput placeholder="Enter your username/email" class="form-control" formControlName="identifier" required>
-        <i class="material-icons" style="font-size: 20px" matSuffix>email</i>
-    </mat-form-field>
-  </div>
-    
-  <div class="form-group">
-    <mat-form-field>
-        <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" class="form-control" formControlName="password" required>
-        <i class="material-icons" style="font-size: 20px" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</i>
-    </mat-form-field>
-  </div>
-  <button type="button" class="signup-button" (click)="loginUser()">Sign in</button>
-  </form>
+<div class="container">
+	<div class="row">
+		<div class="">
+  			<div id="iosBlurBg">
+  				<div id="whiteBg"></div>
+  			</div>
+  			<div id="bottomEnter"></div>
+  			<div id="bottomBlurBg"></div>
+  			<!-- Login Form -->
+  			<div class="loginForm">
+  				<div class="title">
+  					<p>LOG INTO<br><span>SYSTEM</span></p>
+  					<hr>
+  					<hr class="short">
+  				</div>
+  				<form [formGroup]="signInForm" style="width: 140%" (ngSubmit)="loginUser()">
+              <h2>&nbsp;</h2>
+              <div class="form-group">
+              <mat-form-field>
+                      <input matInput placeholder="Enter your username/email" class="form-control" formControlName="identifier" required>
+                  <i class="material-icons" style="font-size: 20px" matSuffix>email</i>
+              </mat-form-field>
+            </div>
+              
+            <div class="form-group">
+              <mat-form-field>
+                  <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" class="form-control" formControlName="password" required>
+                  <i class="material-icons" style="font-size: 20px" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</i>
+              </mat-form-field>
+            </div>
+            <button type="button" class="enterButton" (click)="loginUser()">
+              <i class="material-icons" style="font-size: 20px" matSuffix>lock_open</i>                          
+              Sign in
+            </button>
+            </form>
+        </div>
+		</div>
+	</div>
 </div>
-
