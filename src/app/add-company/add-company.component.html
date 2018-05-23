@@ -1,0 +1,49 @@
+<div class="add-company container">
+    <form [formGroup]="createCompanyForm">
+      <h1>Add Company</h1>
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput placeholder="company name" class="form-control" formControlName="name" required>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput placeholder="company email" class="form-control" formControlName="email" required>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput placeholder="company address" class="form-control" formControlName="siteAddress" required>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput placeholder="address" class="form-control" formControlName="address" required>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput placeholder="registration date" class="form-control" formControlName="regDate" required>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput placeholder="company phone" class="form-control" formControlName="phoneNo" required>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput placeholder="contact person" class="form-control" formControlName="contactPerson" required>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <button type="button" class="add-button" (click)="addCompany()">add company</button>
+      </div>
+    </form>
+  </div>

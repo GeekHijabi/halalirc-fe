@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
+import { AuthenticationService } from '../services/authenticate.service';
 import { Router } from '@angular/router';
 
 
@@ -14,11 +15,12 @@ export class SigninComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
-              private userService: UserService) { }
+              private userService: UserService,
+              private authenticatedService: AuthenticationService) { }
 
   ngOnInit() {
     this.signInForm = this.formBuilder.group({
-      identifier: ['', [Validators.required, Validators.maxLength(5)]],
+      identifier: ['', [Validators.required, Validators.maxLength(8)]],
       password: ['', [Validators.required, Validators.maxLength(8)]],
     });
   }
@@ -30,10 +32,9 @@ export class SigninComponent implements OnInit {
         identifier,
         password,
       };
-    this.userService.signInUser(userPayload)
+    this.authenticatedService.login(userPayload)
     .subscribe((response) => {
       this.router.navigate(['/companies']);
-      console.log('user signed in');
     });
   }
 

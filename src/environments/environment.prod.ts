@@ -1,3 +1,5 @@
-export const environment = {
-  production: true
+const environment = {
+   production: true,
+   apiBaseUrl: 'https://halalfood-irs.herokuapp.com/api/v1',
 };
+export { environment };
