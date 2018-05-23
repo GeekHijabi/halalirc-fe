@@ -4,7 +4,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { AuthenticationService } from './authenticate.service';
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment.prod';
 import { Company } from '../interfaces/company.interface';
 
 @Injectable()
