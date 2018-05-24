@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewChild, OnInit, TemplateRef, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, OnInit, TemplateRef, ElementRef, Input } from '@angular/core';
 import {MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
@@ -14,8 +14,13 @@ import { CompanyService } from '../services/company.service';
   styleUrls: ['./companies.component.scss']
 })
 export class CompaniesComponent implements AfterViewInit, OnInit {
-  displayedColumns = ['name', 'siteAddress', 'email', 'phoneNo', 'contactPerson', 'regDate', 'actions'];
+  displayedColumns = ['id', 'name', 'siteAddress', 'email', 'phoneNo', 'contactPerson', 'regDate', 'actions'];
   dataSource = new CompanyDataSource(this.companyService);
+  companies: any[];
+  showaddCompanyModal: boolean;
+  modalCompany: any;
+  company: any;
+  // @Input() editCompanyForm: any;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -32,6 +37,15 @@ export class CompaniesComponent implements AfterViewInit, OnInit {
     // this.dataSource.sort = this.sort;
   }
 
+  openCompanyModal(company) {
+    this.modalCompany = company;
+    this.showaddCompanyModal = true;
+  }
+
+  closeCompanyModal(company) {
+    this.showaddCompanyModal = false;
+  }
+
   createCompany() {
     this.router.navigate(['/add-company']);
   }
@@ -40,8 +54,13 @@ export class CompaniesComponent implements AfterViewInit, OnInit {
     this.getCompanies()
     .toPromise()
     .then((response) => {
-      // return response;
-      console.log('here', response);
+    });
+  }
+
+  editCompanyForm(id, company) {
+    this.companyService.editCompany(2, company)
+    .subscribe((response) => {
+      return 'here';
     });
   }
 

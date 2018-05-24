@@ -1,2 +1,16 @@
-<router-outlet></router-outlet>
-
+<div>
+    <nav id='nav-grid'>
+        <ul>
+            <a class='navbar-brand'>{{title}}</a>
+                <li>
+                    <a [routerLink]="['']" class="nav-icons section-img">Home</a>
+                </li>
+                <li>
+                    <a [routerLink]="['/companies']" class="nav-icons section-img">Companies List</a>
+                </li>
+        </ul>
+    </nav>
+<div class='container'>
+    <router-outlet></router-outlet>
+</div>
+</div>

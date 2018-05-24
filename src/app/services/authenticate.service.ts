@@ -10,8 +10,8 @@ export class AuthenticationService {
     private apiBaseUrl = environment.apiBaseUrl;
 
     constructor(private http: Http) {
-        const currentUser = JSON.parse(localStorage.getItem('token'));
-        this.token = currentUser && currentUser.token;
+        // const token = JSON.parse(localStorage.getItem('token'));
+        // this.token = token;
     }
 
     login(userData: Object): Observable<boolean> {
@@ -20,7 +20,7 @@ export class AuthenticationService {
                 const token = response.json().token;
                 if (token) {
                     this.token = token;
-                    localStorage.setItem('currentUser', JSON.stringify({ token: token }));
+                    localStorage.setItem('token', token);
                     return true;
                 } else {
                     return false;
@@ -30,6 +30,6 @@ export class AuthenticationService {
 
     logout(): void {
         this.token = null;
-        localStorage.removeItem('currentUser');
+        localStorage.removeItem('token');
     }
 }

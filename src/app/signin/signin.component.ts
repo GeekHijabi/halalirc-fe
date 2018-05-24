@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class SigninComponent implements OnInit {
   signInForm: FormGroup;
+  hide = true;
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,

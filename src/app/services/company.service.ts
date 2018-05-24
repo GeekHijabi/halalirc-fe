@@ -22,9 +22,9 @@ export class CompanyService {
    * @return {Observable} user
    */
   createCompany(companyData: Object) {
-    const headers = new Headers({ 'Authorization': 'Bearer ' + this.authenticatedService.token });
+    const headers = new Headers({ 'Authorization': 'x-token ' + this.authenticatedService.token });
     const options = new RequestOptions({ headers: headers });
-    return this.http.post(`${this.apiBaseUrl}/company/register`, companyData)
+    return this.http.post(`${this.apiBaseUrl}/company/register`, companyData, options)
     .map(response => response.json)
     .catch(error => error.json);
   }
@@ -37,10 +37,22 @@ export class CompanyService {
    * @return {Observable} user
    */
   getCompanies(): Observable<Company[]> {
-    // const headers = new Headers({ 'Authorization': 'Bearer ' + this.authenticatedService.token });
-    // const options = new RequestOptions({ headers: headers });
-    return this.http.get(`${this.apiBaseUrl}/companies`)
+    const headers = new Headers({ 'Authorization': 'x-token ' + this.authenticatedService.token });
+    const options = new RequestOptions({ headers: headers });
+    return this.http.get(`${this.apiBaseUrl}/companies`, options)
     .map(response => response.json().Companies)
+    .catch(error => error.json);
+  }
+
+  editCompany(id, companyData): Observable<Company[]> {
+    return this.http.patch(`${this.apiBaseUrl}/company/${id}`, companyData)
+    .map(response => response.json())
+    .catch(error => error.json());
+  }
+
+  getSingleCompany(companyId: number): Observable<any[]> {
+    return this.http.get(`${this.apiBaseUrl}/company/${companyId}`)
+    .map(response => response.json())
     .catch(error => error.json);
   }
 

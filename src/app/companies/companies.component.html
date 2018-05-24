@@ -8,9 +8,16 @@
   <div class="company-container mat-elevation-z8">
     <mat-table mat-table #table [dataSource]="dataSource" matSort>
   
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
+        <mat-cell *matCellDef="let company">{{ company.id }}</mat-cell>
+      </ng-container>
+
       <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Company Name </mat-header-cell>
-        <mat-cell *matCellDef="let company"> {{company.name}}</mat-cell>
+        <mat-cell *matCellDef="let company"> <a [routerLink]="['/companies', company.id]">
+          {{ company.name }}
+      </a></mat-cell>
       </ng-container>
   
       <ng-container matColumnDef="siteAddress">
@@ -39,7 +46,7 @@
       <ng-container matColumnDef="actions">
           <mat-header-cell *matHeaderCellDef></mat-header-cell>
           <mat-cell *matCellDef="let row">
-              <button mat-button>Edit</button>
+              <button mat-button (click)="editCompanyForm()">Edit</button>
               <button mat-button>Delete</button>
           </mat-cell>
         </ng-container>
@@ -54,4 +61,12 @@
                    [showFirstLastButtons]="true">
     </mat-paginator>
   </div>
+
+  <app-add-company
+  *ngIf="showaddCompanyModal"
+  [company] = "modalCompany"
+  (closeAddCompanyModal) = "closeAddCompanyModal()"
+  >
+
+  </app-add-company>
   

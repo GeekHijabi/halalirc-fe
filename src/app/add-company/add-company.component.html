@@ -1,6 +1,10 @@
-<div class="add-company container">
+<div class="add-company container" #companyModal>
     <form [formGroup]="createCompanyForm">
-      <h1>Add Company</h1>
+        <div class="heading">
+            <!-- <span>{{(EditButton) ? "Add Company Details" : "Edit Company Details" }} -->
+              <!-- <hr/> -->
+            <!-- </span> -->
+          </div>
       <div class="form-group">
         <mat-form-field>
           <input matInput placeholder="company name" class="form-control" formControlName="name" required>
@@ -47,3 +51,9 @@
       </div>
     </form>
   </div>
+
+  <!-- <app-companies
+  [editCompanyForm]="editCompanyForm"
+  >
+  </app-companies> -->
+  <!-- <div class="company-modal-bg"></div> -->
